@@ -1,0 +1,23 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: runradar-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: runradar_db
+      MYSQL_USER: runradar
+      MYSQL_PASSWORD: runradar
+      TZ: Europe/Paris
+    ports:
+      - "3306:3306"
+    volumes:
+      - runradar_mysql:/var/lib/mysql
+    # Commande importante pour utiliser l'authentification native (compatible Node.js)
+    command: >
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+
+volumes:
+  runradar_mysql:
