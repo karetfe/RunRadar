@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { RacesModule } from './races/races.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -16,6 +17,7 @@ import { ConfigModule } from '@nestjs/config';
       synchronize: true, // OK en dev , pas en prod
     }),
     ConfigModule.forRoot({ isGlobal: true }),
+    RacesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
